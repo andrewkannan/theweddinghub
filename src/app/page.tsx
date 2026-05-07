@@ -1,74 +1,106 @@
 import Link from "next/link"
-import { Heart, Sparkles, Calendar, Users, Calculator } from "lucide-react"
+import { Heart, Sparkles, Calendar, Users, Calculator, ArrowRight } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
-      <header className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-rose-100 text-rose-500 rounded-xl flex items-center justify-center">
-            <Heart className="w-5 h-5 fill-current" />
+    <div className="min-h-screen bg-[#fdfbf7] flex flex-col font-sans">
+      {/* Premium Header */}
+      <header className="px-8 py-6 flex items-center justify-between absolute w-full top-0 z-50">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#cea360] rounded-xl flex items-center justify-center shadow-md">
+            <Heart className="w-5 h-5 text-white fill-current" />
           </div>
-          <span className="font-semibold text-xl text-slate-800">The Wedding Hub</span>
+          <span className="font-serif font-bold text-2xl text-[#2d2a26] tracking-tight">WeddingOS</span>
         </div>
-        <div className="flex gap-4">
-          <Link href="/login" className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
-            Log in
+        <div className="flex items-center gap-6">
+          <Link href="/login" className="text-sm font-medium text-[#855933] hover:text-[#cea360] transition-colors">
+            Sign In
           </Link>
-          <Link href="/login" className="px-4 py-2 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">
-            Get Started
+          <Link href="/login" className="px-6 py-2.5 text-sm font-medium bg-[#2d2a26] text-[#fdfbf7] rounded-full hover:bg-[#4a453f] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            Start Planning
           </Link>
         </div>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 relative">
+        {/* Abstract Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[#f6d2d9] opacity-30 blur-[100px]" />
+          <div className="absolute bottom-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#efe5ce] opacity-40 blur-[120px]" />
+        </div>
+
         {/* Hero Section */}
-        <section className="py-24 px-6 text-center max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-rose-600 text-sm font-medium mb-8">
+        <section className="relative pt-40 pb-32 px-6 text-center max-w-5xl mx-auto z-10 flex flex-col items-center animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#fdf5f6] border border-[#f6d2d9] text-[#d6617c] text-sm font-medium mb-10 shadow-sm">
             <Sparkles className="w-4 h-4" />
-            <span>The easiest way to plan your perfect day</span>
+            <span>The intelligent operating system for couples</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight mb-8">
-            Plan your wedding with <span className="text-rose-500">joy</span>, not stress.
+          
+          <h1 className="text-6xl md:text-8xl font-serif font-bold text-[#2d2a26] tracking-tight mb-8 leading-[1.1]">
+            Plan your perfect day with <span className="italic text-[#cea360]">elegance.</span>
           </h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Everything you need to organize your wedding in one beautiful place. Track budgets, manage guests, and stay on top of your tasks.
+          
+          <p className="text-xl md:text-2xl text-[#b1a796] max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+            Replace chaotic spreadsheets with a centralized, AI-powered workspace. Manage budgets, guests, tasks, and vendors in one beautiful place.
           </p>
-          <Link href="/login" className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium bg-rose-500 text-white rounded-2xl hover:bg-rose-600 transition-all shadow-[0_8px_30px_rgb(244,63,94,0.3)] hover:shadow-[0_8px_30px_rgb(244,63,94,0.4)] hover:-translate-y-0.5">
-            Start Planning Now
-          </Link>
+          
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link href="/login" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-medium bg-[#cea360] text-white rounded-full hover:bg-[#c28b46] transition-all shadow-[0_8px_30px_rgba(206,163,96,0.4)] hover:-translate-y-1">
+              Create your project <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link href="#features" className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium bg-white text-[#855933] border border-[#ebe9e2] rounded-full hover:bg-[#f5f4f1] transition-colors shadow-sm">
+              Explore features
+            </Link>
+          </div>
         </section>
 
         {/* Features Section */}
-        <section className="py-24 bg-white px-6">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-slate-900 mb-16">Everything you need in one place</h2>
+        <section id="features" className="py-32 bg-white relative z-10 border-t border-[#ebe9e2]">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#2d2a26] mb-6">Everything you need, nothing you don't.</h2>
+              <p className="text-[#a26e38] text-lg max-w-2xl mx-auto">A suite of powerful tools designed specifically for the modern couple.</p>
+            </div>
+            
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100">
-                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                  <Calculator className="w-6 h-6" />
+              {/* Feature 1 */}
+              <div className="p-10 rounded-[2rem] bg-[#fcfaf5] border border-[#ebe9e2] hover:shadow-xl transition-shadow group">
+                <div className="w-14 h-14 bg-[#f7f3e8] text-[#cea360] rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  <Calculator className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-slate-900">Budget Tracking</h3>
-                <p className="text-slate-500 leading-relaxed">Keep your expenses in check. Track estimated vs actual costs and never lose sight of your budget.</p>
+                <h3 className="text-2xl font-serif font-bold mb-4 text-[#2d2a26]">Smart Budgets</h3>
+                <p className="text-[#855933] leading-relaxed">Keep your finances elegant. Track estimated vs actual costs, manage vendor payments, and visualize your spending instantly.</p>
               </div>
-              <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100">
-                <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                  <Users className="w-6 h-6" />
+              
+              {/* Feature 2 */}
+              <div className="p-10 rounded-[2rem] bg-[#fdf5f6] border border-[#fae8eb] hover:shadow-xl transition-shadow group">
+                <div className="w-14 h-14 bg-white text-[#d6617c] rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-sm">
+                  <Users className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-slate-900">Guest Management</h3>
-                <p className="text-slate-500 leading-relaxed">Easily manage your guest list, track RSVPs, dietary requirements, and organize seating arrangements.</p>
+                <h3 className="text-2xl font-serif font-bold mb-4 text-[#2d2a26]">Guest Experience</h3>
+                <p className="text-[#855933] leading-relaxed">Effortlessly manage your guest list, track RSVPs, dietary requirements, and organize complex seating arrangements visually.</p>
               </div>
-              <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100">
-                <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
-                  <Calendar className="w-6 h-6" />
+              
+              {/* Feature 3 */}
+              <div className="p-10 rounded-[2rem] bg-[#f5f4f1] border border-[#ebe9e2] hover:shadow-xl transition-shadow group">
+                <div className="w-14 h-14 bg-white text-[#2d2a26] rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-sm">
+                  <Calendar className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-slate-900">Task Scheduling</h3>
-                <p className="text-slate-500 leading-relaxed">Stay on top of your to-dos with clear deadlines and priority tracking for every wedding milestone.</p>
+                <h3 className="text-2xl font-serif font-bold mb-4 text-[#2d2a26]">Flawless Timelines</h3>
+                <p className="text-[#855933] leading-relaxed">Stay perfectly on schedule with Kanban boards, automated reminders, and a comprehensive wedding day itinerary.</p>
               </div>
             </div>
           </div>
         </section>
       </main>
+      
+      <footer className="py-12 bg-[#2d2a26] text-[#b1a796] text-center">
+        <div className="flex items-center justify-center gap-2 mb-6">
+          <Heart className="w-5 h-5 text-[#cea360] fill-current" />
+          <span className="font-serif font-bold text-xl text-white">WeddingOS</span>
+        </div>
+        <p>© {new Date().getFullYear()} WeddingOS. All rights reserved.</p>
+      </footer>
     </div>
   )
 }

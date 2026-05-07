@@ -9,7 +9,9 @@ import {
   Store, 
   Users, 
   Calendar, 
-  AlertCircle,
+  Settings,
+  Image as ImageIcon,
+  Armchair,
   LogOut,
   Heart
 } from "lucide-react"
@@ -18,26 +20,28 @@ import { signOut } from "next-auth/react"
 const navigation = [
   { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { name: "Budget", href: "/dashboard/budget", icon: Wallet },
-  { name: "Tasks", href: "/dashboard/tasks", icon: CheckSquare },
+  { name: "Timeline", href: "/dashboard/tasks", icon: CheckSquare },
   { name: "Vendors", href: "/dashboard/vendors", icon: Store },
   { name: "Guests", href: "/dashboard/guests", icon: Users },
+  { name: "Seating", href: "/dashboard/seating", icon: Armchair },
   { name: "Schedule", href: "/dashboard/schedule", icon: Calendar },
-  { name: "Issues", href: "/dashboard/issues", icon: AlertCircle },
+  { name: "Moodboards", href: "/dashboard/moodboards", icon: ImageIcon },
+  { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex flex-col w-64 bg-slate-900 border-r border-slate-800 text-slate-300">
-      <div className="flex items-center h-16 px-6 gap-2 text-white border-b border-slate-800">
-        <div className="w-8 h-8 bg-rose-500 rounded-lg flex items-center justify-center">
-          <Heart className="w-5 h-5 fill-current" />
+    <div className="flex flex-col w-72 bg-[#fdfbf7] border-r border-[#ebe9e2] text-[#2d2a26]">
+      <div className="flex items-center h-20 px-8 gap-3 border-b border-[#ebe9e2]">
+        <div className="w-10 h-10 bg-[#cea360] rounded-xl flex items-center justify-center shadow-sm">
+          <Heart className="w-5 h-5 text-white fill-current" />
         </div>
-        <span className="font-semibold text-lg">The Wedding Hub</span>
+        <span className="font-serif font-bold text-xl tracking-tight text-[#2d2a26]">WeddingOS</span>
       </div>
       
-      <div className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+      <div className="flex-1 px-4 py-8 space-y-1.5 overflow-y-auto no-scrollbar">
         {navigation.map((item) => {
           const isActive = pathname === item.href
           const Icon = item.icon
@@ -45,23 +49,23 @@ export function Sidebar() {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors ${
+              className={`flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-200 ${
                 isActive 
-                  ? "bg-rose-500 text-white" 
-                  : "hover:bg-slate-800 hover:text-white"
+                  ? "bg-[#f7f3e8] text-[#a26e38] font-semibold shadow-sm" 
+                  : "text-[#b1a796] hover:bg-[#fcfaf5] hover:text-[#6c492b]"
               }`}
             >
-              <Icon className="w-5 h-5" />
-              <span className="font-medium text-sm">{item.name}</span>
+              <Icon className={`w-5 h-5 ${isActive ? 'text-[#cea360]' : ''}`} />
+              <span className="text-sm">{item.name}</span>
             </Link>
           )
         })}
       </div>
 
-      <div className="p-4 border-t border-slate-800">
+      <div className="p-6 border-t border-[#ebe9e2]">
         <button
           onClick={() => signOut({ callbackUrl: '/' })}
-          className="flex items-center gap-3 px-3 py-2.5 w-full text-left rounded-xl transition-colors hover:bg-slate-800 hover:text-white text-slate-400"
+          className="flex items-center gap-3 px-4 py-3 w-full text-left rounded-2xl transition-colors hover:bg-rose-50 hover:text-rose-600 text-[#b1a796]"
         >
           <LogOut className="w-5 h-5" />
           <span className="font-medium text-sm">Sign out</span>
