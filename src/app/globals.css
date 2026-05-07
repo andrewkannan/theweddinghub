@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdfbf7; /* Off-white/Beige */
+  --foreground: #2d2a26; /* Dark charcoal, softer than pure black */
+  
+  /* Primary - Champagne Gold */
+  --color-primary-50: #fcfaf5;
+  --color-primary-100: #f7f3e8;
+  --color-primary-200: #efe5ce;
+  --color-primary-300: #e4d1aa;
+  --color-primary-400: #d7b982;
+  --color-primary-500: #cea360; /* Champagne Gold base */
+  --color-primary-600: #c28b46;
+  --color-primary-700: #a26e38;
+  --color-primary-800: #855933;
+  --color-primary-900: #6c492b;
+
+  /* Secondary - Blush Pink */
+  --color-secondary-50: #fdf5f6;
+  --color-secondary-100: #fae8eb;
+  --color-secondary-200: #f6d2d9;
+  --color-secondary-300: #efb1be;
+  --color-secondary-400: #e4879c;
+  --color-secondary-500: #d6617c; /* Blush Pink base */
+  --color-secondary-600: #c14360;
+  --color-secondary-700: #a3324a;
+  --color-secondary-800: #882c40;
+  --color-secondary-900: #732839;
+  
+  /* Accent - Beige / Sand */
+  --color-accent-50: #fbfbfa;
+  --color-accent-100: #f5f4f1;
+  --color-accent-200: #ebe9e2;
+  --color-accent-300: #dbd7cd;
+  --color-accent-400: #c5beb1;
+  --color-accent-500: #b1a796;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Adding custom colors */
+  --color-champagne-50: var(--color-primary-50);
+  --color-champagne-100: var(--color-primary-100);
+  --color-champagne-200: var(--color-primary-200);
+  --color-champagne-300: var(--color-primary-300);
+  --color-champagne-400: var(--color-primary-400);
+  --color-champagne-500: var(--color-primary-500);
+  --color-champagne-600: var(--color-primary-600);
+  --color-champagne-700: var(--color-primary-700);
+  --color-champagne-800: var(--color-primary-800);
+  --color-champagne-900: var(--color-primary-900);
+
+  --color-blush-50: var(--color-secondary-50);
+  --color-blush-100: var(--color-secondary-100);
+  --color-blush-200: var(--color-secondary-200);
+  --color-blush-300: var(--color-secondary-300);
+  --color-blush-400: var(--color-secondary-400);
+  --color-blush-500: var(--color-secondary-500);
+  --color-blush-600: var(--color-secondary-600);
+  --color-blush-700: var(--color-secondary-700);
+  --color-blush-800: var(--color-secondary-800);
+  --color-blush-900: var(--color-secondary-900);
+  
+  --color-beige-50: var(--color-accent-50);
+  --color-beige-100: var(--color-accent-100);
+  --color-beige-200: var(--color-accent-200);
+  --color-beige-300: var(--color-accent-300);
+  --color-beige-400: var(--color-accent-400);
+  --color-beige-500: var(--color-accent-500);
+
+  --font-sans: 'Inter', var(--font-geist-sans), sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #12100f; /* Very dark brownish-black */
+    --foreground: #f0ebe1;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+}
+
+.dark .glass {
+  background: rgba(30, 30, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hide scrollbar for clean aesthetic */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
