@@ -1,18 +1,18 @@
 "use client"
 
 import { useActionState } from "react"
-import { authenticate } from "@/app/lib/actions"
+import { register } from "@/app/lib/actions"
 import { Heart } from "lucide-react"
 import Link from "next/link"
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [errorMessage, formAction, isPending] = useActionState(
-    authenticate,
+    register,
     undefined
   )
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fdfbf7] relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-[#fdfbf7]">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[#f6d2d9] opacity-30 blur-[100px]" />
         <div className="absolute bottom-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#efe5ce] opacity-40 blur-[120px]" />
@@ -23,11 +23,24 @@ export default function LoginPage() {
           <div className="w-12 h-12 bg-[#cea360] text-white rounded-2xl flex items-center justify-center mb-4 shadow-sm">
             <Heart className="w-6 h-6 fill-current" />
           </div>
-          <h1 className="text-2xl font-serif font-bold text-[#2d2a26]">Welcome to The Wedding Hub</h1>
-          <p className="text-[#a26e38] mt-2 text-sm">Sign in to manage your special day</p>
+          <h1 className="text-2xl font-serif font-bold text-[#2d2a26]">Create an Account</h1>
+          <p className="text-[#a26e38] mt-2 text-sm">Start planning your perfect wedding</p>
         </div>
 
         <form action={formAction} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-[#6c492b] mb-1" htmlFor="name">
+              Full Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              required
+              className="w-full px-4 py-3 rounded-xl border border-[#e4d1aa] focus:outline-none focus:ring-2 focus:ring-[#cea360] focus:border-transparent transition-all bg-[#fcfaf5] text-[#2d2a26]"
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-[#6c492b] mb-1" htmlFor="email">
               Email
@@ -49,7 +62,7 @@ export default function LoginPage() {
               id="password"
               type="password"
               name="password"
-              placeholder="Enter your password"
+              placeholder="Create a password"
               required
               className="w-full px-4 py-3 rounded-xl border border-[#e4d1aa] focus:outline-none focus:ring-2 focus:ring-[#cea360] focus:border-transparent transition-all bg-[#fcfaf5] text-[#2d2a26]"
             />
@@ -66,14 +79,14 @@ export default function LoginPage() {
             disabled={isPending}
             className="w-full py-3 px-4 bg-[#2d2a26] text-white rounded-full font-medium hover:bg-[#1a1816] transition-all shadow-md hover:shadow-lg disabled:opacity-70 disabled:hover:translate-y-0 mt-6 hover:-translate-y-0.5"
           >
-            {isPending ? "Signing in..." : "Sign in"}
+            {isPending ? "Creating account..." : "Sign up"}
           </button>
         </form>
         
         <div className="mt-6 text-center text-sm text-[#a26e38]">
-          Don't have an account?{' '}
-          <Link href="/register" className="font-semibold text-[#cea360] hover:underline">
-            Sign up
+          Already have an account?{' '}
+          <Link href="/login" className="font-semibold text-[#cea360] hover:underline">
+            Sign in
           </Link>
         </div>
       </div>
