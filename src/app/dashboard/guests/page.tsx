@@ -10,7 +10,7 @@ export default async function GuestsPage() {
 
   const wedding = await prisma.wedding.findFirst({
     where: { userId: session.user.id },
-    include: { guests: { orderBy: { name: 'asc' } } }
+    include: { guests: { orderBy: { firstName: 'asc' } } }
   })
 
   if (!wedding) redirect("/dashboard")
@@ -97,8 +97,8 @@ export default async function GuestsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Table Number</label>
-                  <input type="text" name="tableNumber" placeholder="e.g. 5" className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-slate-50" />
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Group Name</label>
+                  <input type="text" name="groupName" placeholder="e.g. Friends" className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-slate-50" />
                 </div>
               </div>
               <div>
@@ -123,7 +123,7 @@ export default async function GuestsPage() {
                     <th className="px-6 py-4">RSVP Status</th>
                     <th className="px-6 py-4">Pax</th>
                     <th className="px-6 py-4">Side</th>
-                    <th className="px-6 py-4">Table</th>
+                    <th className="px-6 py-4">Group</th>
                     <th className="px-6 py-4 text-right">Actions</th>
                   </tr>
                 </thead>
@@ -131,7 +131,7 @@ export default async function GuestsPage() {
                   {guests.map(guest => (
                     <tr key={guest.id} className="hover:bg-slate-50/50 transition-colors">
                       <td className="px-6 py-4">
-                        <div className="font-medium text-slate-900">{guest.name}</div>
+                        <div className="font-medium text-slate-900">{guest.firstName} {guest.lastName || ''}</div>
                         {guest.dietaryNotes && (
                           <div className="text-xs text-rose-500 mt-1 truncate max-w-[150px]" title={guest.dietaryNotes}>
                             {guest.dietaryNotes}
@@ -154,7 +154,7 @@ export default async function GuestsPage() {
                         {guest.side || '-'}
                       </td>
                       <td className="px-6 py-4 text-slate-500">
-                        {guest.tableNumber ? `Table ${guest.tableNumber}` : '-'}
+                        {guest.groupName || '-'}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <form action={async () => {

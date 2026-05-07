@@ -11,7 +11,7 @@ export default async function BudgetPage() {
 
   const wedding = await prisma.wedding.findFirst({
     where: { userId: session.user.id },
-    include: { budgetItems: true }
+    include: { budgetItems: { include: { payments: true } } }
   })
 
   if (!wedding) redirect("/dashboard")
@@ -27,7 +27,7 @@ export default async function BudgetPage() {
 
   const totalEstimated = items.reduce((acc, item) => acc + item.estimatedCost, 0)
   const totalActual = items.reduce((acc, item) => acc + item.actualCost, 0)
-  const totalPaid = items.reduce((acc, item) => acc + item.amountPaid, 0)
+  const totalPaid = items.reduce((acc, item) => acc + item.payments.reduce((sum, p) => sum + p.amount, 0), 0)
 
   return (
     <div className="space-y-8">
@@ -143,8 +143,8 @@ export default async function BudgetPage() {
                       </div>
                       <div className="text-right">
                         <div className="text-slate-500 text-xs mb-1">Paid</div>
-                        <div className={`font-medium ${item.amountPaid >= item.actualCost && item.actualCost > 0 ? 'text-emerald-600' : 'text-slate-900'}`}>
-                          ${item.amountPaid.toLocaleString()}
+                        <div className={`font-medium ${item.payments.reduce((sum, p) => sum + p.amount, 0) >= item.actualCost && item.actualCost > 0 ? 'text-emerald-600' : 'text-slate-900'}`}>
+                          ${item.payments.reduce((sum, p) => sum + p.amount, 0).toLocaleString()}
                         </div>
                       </div>
                       <form action={async () => {

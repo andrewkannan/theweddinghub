@@ -25,9 +25,16 @@ export async function addBudgetItem(formData: FormData) {
       itemName,
       estimatedCost,
       actualCost,
-      amountPaid,
       dueDate,
-      weddingId: wedding.id
+      weddingId: wedding.id,
+      ...(amountPaid > 0 ? {
+        payments: {
+          create: {
+            amount: amountPaid,
+            date: new Date(),
+          }
+        }
+      } : {})
     }
   })
 

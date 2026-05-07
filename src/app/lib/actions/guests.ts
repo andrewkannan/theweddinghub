@@ -11,21 +11,21 @@ export async function addGuest(formData: FormData) {
   const wedding = await prisma.wedding.findFirst({ where: { userId: session.user.id } })
   if (!wedding) throw new Error("Wedding not found")
 
-  const name = formData.get("name") as string
+  const firstName = formData.get("name") as string
   const side = formData.get("side") as string
   const rsvpStatus = formData.get("rsvpStatus") as string || "pending"
   const paxCount = parseInt(formData.get("paxCount") as string) || 1
   const dietaryNotes = formData.get("dietaryNotes") as string
-  const tableNumber = formData.get("tableNumber") as string
+  const groupName = formData.get("groupName") as string
 
   await prisma.guest.create({
     data: {
-      name,
+      firstName,
       side,
       rsvpStatus,
       paxCount,
       dietaryNotes,
-      tableNumber,
+      groupName,
       weddingId: wedding.id
     }
   })
